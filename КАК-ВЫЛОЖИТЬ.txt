@@ -1,0 +1,22 @@
+ВЫЛОЖИТЬ ЧЕРЕЗ GITHUB DESKTOP
+=============================
+
+Папка (скопируйте путь):
+/Users/lubimaa/Projects/traffic-manager/vacancy-deploy
+
+1) GitHub Desktop → Файл → Add Local Repository
+   (или «Добавить локальный репозиторий»)
+
+2) Укажите папку vacancy-deploy
+   Если ошибка «не git» → Create a repository
+   Имя: traffic-manager-vacancy
+
+3) Commit to main — сообщение: Сайт для кандидатов
+
+4) Publish repository — публичный (без private)
+
+5) View on GitHub → Settings → Pages
+   Branch: main, Folder: / (root) → Save
+
+Сайт через 2 мин:
+https://ВАШ_ЛОГИН.github.io/traffic-manager-vacancy/

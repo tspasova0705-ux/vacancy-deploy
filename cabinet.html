@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>Личный кабинет — Трафик-менеджер</title>
+<link rel="stylesheet" href="styles.css"/>
+<link rel="stylesheet" href="cabinet.css"/>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+</head>
+<body>
+<nav class="nav"><div class="container nav-inner">
+ <a class="logo" href="index.html">Трафик<span>Менеджер</span></a>
+ <div class="nav-links">
+  <a href="index.html">Главная</a>
+  <a href="chast-1.html">Часть 1</a>
+  <a href="chast-2.html">Часть 2</a>
+  <a href="cabinet.html" class="cabinet-link active">Личный кабинет</a>
+ </div>
+</div></nav>
+
+<div class="cabinet-layout">
+ <aside class="cabinet-side">
+  <div class="user">
+   <strong>Анна М.</strong>
+   <span>Трафик-менеджер · обучение</span>
+  </div>
+  <nav class="cabinet-menu" id="menu">
+   <a href="#" data-panel="dashboard" class="active"><span class="ico">📊</span> Дашборд</a>
+   <a href="#" data-panel="offers"><span class="ico">📋</span> Предложения</a>
+   <a href="#" data-panel="links"><span class="ico">🔗</span> Мои ссылки</a>
+   <a href="#" data-panel="sources"><span class="ico">📡</span> Источники</a>
+   <a href="#" data-panel="leads"><span class="ico">📝</span> Заявки</a>
+   <a href="#" data-panel="stats"><span class="ico">📈</span> Статистика</a>
+   <a href="#" data-panel="payouts"><span class="ico">💳</span> Выплаты</a>
+  </nav>
+  <div style="padding:14px;margin-top:24px;background:var(--blue-soft);border-radius:12px;font-size:13px;color:var(--blue)">
+   <strong>Куратор:</strong> Елена К.<br/>Вопросы по счёту и выплатам
+  </div>
+ </aside>
+
+ <main class="cabinet-main">
+
+  <!-- ДАШБОРД -->
+  <section class="cabinet-panel active" id="dashboard">
+   <div class="cabinet-head">
+    <h1>Дашборд</h1>
+    <p>Обзор переходов, заявок и начислений за последние 7 дней</p>
+   </div>
+   <div class="kpi-row" id="kpi"></div>
+   <div class="link-card">
+    <p><strong>Персональная ссылка</strong> — система фиксирует, от кого пришёл переход</p>
+    <div class="link-row">
+     <input type="text" readonly value="https://offer.tm/ref/anna-m-7f3a2" id="mainLink"/>
+     <button type="button" onclick="copyLink()">Копировать</button>
+    </div>
+   </div>
+   <div class="chart-grid">
+    <div class="chart-box"><h3>Переходы и заявки по дням</h3><canvas id="chartMain" height="120"></canvas></div>
+    <div class="chart-box"><h3>Заявки по источникам</h3><canvas id="chartSrc" height="120"></canvas></div>
+   </div>
+   <div class="two-col">
+    <div class="table-wrap"><table class="data"><thead><tr><th>Предложение</th><th>Переходы</th><th>Заявки</th><th>Статус</th></tr></thead><tbody id="dashOffers"></tbody></table></div>
+    <div class="table-wrap"><table class="data"><thead><tr><th>Заявка</th><th>Источник</th><th>Статус</th></tr></thead><tbody id="dashLeads"></tbody></table></div>
+   </div>
+  </section>
+
+  <!-- ПРЕДЛОЖЕНИЯ -->
+  <section class="cabinet-panel" id="offers">
+   <div class="cabinet-head">
+    <h1>Рекламные предложения</h1>
+    <p>Изучите условия, выберите источники и разместите материалы по инструкции</p>
+   </div>
+   <div class="offer-grid" id="offerGrid"></div>
+  </section>
+
+  <!-- ССЫЛКИ -->
+  <section class="cabinet-panel" id="links">
+   <div class="cabinet-head">
+    <h1>Мои персональные ссылки</h1>
+    <p>У каждого предложения — своя ссылка для отслеживания переходов</p>
+   </div>
+   <div class="split" style="display:grid;grid-template-columns:1fr 1fr;gap:32px;align-items:center;margin-bottom:32px">
+    <div>
+     <p style="color:var(--muted);margin-bottom:16px">Разместите ссылку в разрешённом источнике. Переход фиксируется в системе и отображается в статистике.</p>
+     <img src="assets/slide-personal-link.png" alt="" style="border-radius:12px;box-shadow:var(--shadow)"/>
+    </div>
+    <img src="assets/slide-traffic-flow.png" alt="" style="border-radius:12px;box-shadow:var(--shadow)"/>
+   </div>
+   <div class="table-wrap"><table class="data"><thead><tr><th>Предложение</th><th>Ссылка</th><th>Переходы</th><th>Заявки</th><th></th></tr></thead><tbody id="linksTable"></tbody></table></div>
+  </section>
+
+  <!-- ИСТОЧНИКИ -->
+  <section class="cabinet-panel" id="sources">
+   <div class="cabinet-head">
+    <h1>Источники трафика</h1>
+    <p>Откуда приходят переходы — соцсети, мессенджеры, доски объявлений и другие площадки</p>
+   </div>
+   <div class="chart-grid">
+    <div class="chart-box"><h3>Переходы по источникам</h3><canvas id="chartSrcBar"></canvas></div>
+    <div class="chart-box"><h3>Конверсия в заявку</h3><canvas id="chartConv"></canvas></div>
+   </div>
+   <div class="table-wrap"><table class="data"><thead><tr><th>Источник</th><th>Размещений</th><th>Переходы</th><th>Заявки</th><th>Подтверждено</th><th>Конверсия</th></tr></thead><tbody id="srcTable"></tbody></table></div>
+  </section>
+
+  <!-- ЗАЯВКИ -->
+  <section class="cabinet-panel" id="leads">
+   <div class="cabinet-head">
+    <h1>Заявки</h1>
+    <p>Заявки проходят проверку по условиям рекламодателя. Оплата — за подтверждённые.</p>
+   </div>
+   <div class="table-wrap"><table class="data"><thead><tr><th>Дата</th><th>Предложение</th><th>Источник</th><th>Статус</th><th>Начисление</th></tr></thead><tbody id="leadsTable"></tbody></table></div>
+  </section>
+
+  <!-- СТАТИСТИКА -->
+  <section class="cabinet-panel" id="stats">
+   <div class="cabinet-head">
+    <h1>Статистика</h1>
+    <p>Анализируйте, какие источники и объявления дают лучший результат</p>
+   </div>
+   <div class="chart-grid">
+    <div class="chart-box"><h3>Динамика за неделю</h3><canvas id="chartWeek"></canvas></div>
+    <div class="chart-box"><h3>Подтверждённые заявки</h3><canvas id="chartConfirmed"></canvas></div>
+   </div>
+   <img src="assets/slide-dashboard.png" alt="" style="width:100%;max-height:280px;object-fit:cover;border-radius:16px;margin-top:8px;box-shadow:var(--shadow)"/>
+  </section>
+
+  <!-- ВЫПЛАТЫ -->
+  <section class="cabinet-panel" id="payouts">
+   <div class="cabinet-head">
+    <h1>Выплаты</h1>
+    <p>Начисления за подтверждённый результат. Выплаты на расчётный счёт после проверки.</p>
+   </div>
+   <div class="grid-2" style="display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-bottom:24px">
+    <div class="kpi"><div class="t">К выплате</div><div class="v">4 850 ₽</div><div class="d">12 подтверждённых заявок</div></div>
+    <div class="kpi"><div class="t">Выплачено за месяц</div><div class="v">18 200 ₽</div><div class="d">На расчётный счёт</div></div>
+   </div>
+   <div class="split" style="display:grid;grid-template-columns:1fr 1fr;gap:32px;align-items:center;margin-bottom:24px">
+    <img src="assets/p2-bank.png" alt="" style="border-radius:12px"/>
+    <div class="card"><h3>Реквизиты</h3><p style="color:var(--muted);font-size:14px;margin-top:8px">Расчётный счёт подключён · статус: активен<br/>Формат: самозанятый (уточнено с куратором)</p></div>
+   </div>
+   <div class="table-wrap"><table class="data"><thead><tr><th>Период</th><th>Подтверждено</th><th>Сумма</th><th>Статус выплаты</th></tr></thead><tbody id="payoutTable"></tbody></table></div>
+  </section>
+
+ </main>
+</div>
+
+
+<footer class="site-footer"><div class="container footer-grid">
+<div><div class="footer-logo">Трафик<span>Менеджер</span></div>
+<p class="footer-about">Компания в сфере интернет-рекламы и привлечения трафика. Помогаем рекламодателям получать целевую аудиторию, переходы и заявки из интернета.</p></div>
+<div><h4>Направление</h4><ul>
+<li><a href="chast-1.html">Условия работы</a></li><li><a href="chast-2.html">Выплаты и счёт</a></li><li><a href="cabinet.html">Личный кабинет</a></li></ul></div>
+<div><h4>Важно</h4><ul class="plain"><li>Обучение бесплатное</li><li>Доход зависит от результата</li><li>Официальное сотрудничество</li></ul></div>
+<div><h4>Контакты</h4><p class="footer-contact">Вопросы по вакансии — через бот после регистрации.<br/>Куратор помогает на организационном этапе.</p></div>
+</div><div class="container footer-bottom"><span>© 2026 · Интернет-реклама и привлечение трафика</span><span>Мы не обещаем гарантированный доход</span></div></footer>
+
+<script>
+const fmt = n => new Intl.NumberFormat('ru-RU').format(n);
+const rub = n => new Intl.NumberFormat('ru-RU',{style:'currency',currency:'RUB',maximumFractionDigits:0}).format(n);
+
+const daily = [
+ {d:'02.06',cl:42,ld:8,cf:5},{d:'03.06',cl:38,ld:6,cf:4},{d:'04.06',cl:55,ld:11,cf:7},
+ {d:'05.06',cl:61,ld:9,cf:6},{d:'06.06',cl:47,ld:7,cf:5},{d:'07.06',cl:52,ld:10,cf:6},{d:'08.06',cl:58,ld:12,cf:8}
+];
+const sources = [
+ {n:'Telegram',cl:124,ld:28,cf:18,posts:6},
+ {n:'ВКонтакте',cl:98,ld:19,cf:11,posts:4},
+ {n:'Avito',cl:76,ld:14,cf:9,posts:3},
+ {n:'hh.ru',cl:45,ld:8,cf:5,posts:2},
+ {n:'Другое',cl:32,ld:5,cf:3,posts:2}
+];
+const offers = [
+ {t:'Подработка курьером',d:'Вакансии · Москва и МО',rate:'350 ₽ / заявка',img:'p1-manager.png',cl:89,ld:14,on:true},
+ {t:'Удалённая работа оператором',d:'Онлайн-сервисы',rate:'280 ₽ / заявка',img:'p1-schedule.png',cl:67,ld:9,on:true},
+ {t:'Курсы по фрилансу',d:'Образование',rate:'420 ₽ / заявка',img:'p1-training.png',cl:54,ld:7,on:true},
+ {t:'Вакансии склада',d:'Соискатели',rate:'310 ₽ / заявка',img:'p1-sources.png',cl:41,ld:5,on:false},
+ {t:'Партнёрская программа',d:'Партнёрки',rate:'по условиям',img:'p1-growth.png',cl:28,ld:3,on:false},
+ {t:'Подработка в выходные',d:'Вакансии',rate:'290 ₽ / заявка',img:'p1-flow.png',cl:36,ld:4,on:true}
+];
+const leads = [
+ {dt:'08.06 14:22',of:'Курьер',src:'Telegram',st:'confirmed',sum:350},
+ {dt:'08.06 11:05',of:'Оператор',src:'ВК',st:'confirmed',sum:280},
+ {dt:'08.06 09:41',of:'Курьер',src:'Avito',st:'pending',sum:0},
+ {dt:'07.06 18:30',of:'Курсы',src:'Telegram',st:'confirmed',sum:420},
+ {dt:'07.06 15:12',of:'Курьер',src:'hh.ru',st:'rejected',sum:0},
+ {dt:'07.06 10:08',of:'Оператор',src:'Telegram',st:'confirmed',sum:280},
+ {dt:'06.06 16:55',of:'Выходные',src:'ВК',st:'pending',sum:0},
+ {dt:'06.06 12:20',of:'Курьер',src:'Avito',st:'confirmed',sum:350}
+];
+const payouts = [
+ {p:'27.05 — 02.06',n:9,s:3150,st:'paid'},
+ {p:'20.05 — 26.05',n:11,s:3820,st:'paid'},
+ {p:'03.06 — 09.06',n:12,s:4850,st:'pending'}
+];
+const stTag = s => ({confirmed:'<span class="tag green">Подтверждена</span>',pending:'<span class="tag yellow">На проверке</span>',rejected:'<span class="tag red">Отклонена</span>'}[s]);
+const payTag = s => s==='paid'?'<span class="tag green">Выплачено</span>':'<span class="tag yellow">К выплате</span>';
+
+const tCl = daily.reduce((a,x)=>a+x.cl,0), tLd = daily.reduce((a,x)=>a+x.ld,0), tCf = daily.reduce((a,x)=>a+x.cf,0);
+document.getElementById('kpi').innerHTML = [
+ ['Переходы (7 дн.)',fmt(tCl),'+12% к прошлой неделе'],
+ ['Заявки',fmt(tLd),'На проверке: 2'],
+ ['Подтверждено',fmt(tCf),'Качество трафика: хорошее'],
+ ['К выплате',rub(4850),'12 заявок']
+].map(([t,v,d])=>`<div class="kpi"><div class="t">${t}</div><div class="v">${v}</div><div class="d">${d}</div></div>`).join('');
+
+document.getElementById('dashOffers').innerHTML = offers.filter(o=>o.on).slice(0,4).map(o=>
+ `<tr><td><strong>${o.t}</strong></td><td>${o.cl}</td><td>${o.ld}</td><td><span class="tag blue">Активно</span></td></tr>`).join('');
+document.getElementById('dashLeads').innerHTML = leads.slice(0,5).map(l=>
+ `<tr><td>${l.dt}</td><td>${l.of}</td><td>${stTag(l.st)}</td></tr>`).join('');
+
+document.getElementById('offerGrid').innerHTML = offers.map(o=>`
+ <div class="offer-card">
+  <img src="assets/${o.img}" alt=""/>
+  <div class="body">
+   <h4>${o.t}</h4><p>${o.d}</p>
+   <div class="meta"><span>${o.rate}</span><span class="tag ${o.on?'blue':'yellow'}">${o.on?'Доступно':'Пауза'}</span></div>
+   <p style="margin-top:10px;font-size:12px;color:var(--muted)">Переходы: ${o.cl} · Заявки: ${o.ld}</p>
+  </div>
+ </div>`).join('');
+
+document.getElementById('linksTable').innerHTML = offers.filter(o=>o.on).map((o,i)=>`
+ <tr><td>${o.t}</td><td style="font-size:12px;color:var(--muted)">https://offer.tm/r/a${i+1}7f</td><td>${o.cl}</td><td>${o.ld}</td>
+ <td><button class="btn btn-secondary" style="padding:6px 12px;font-size:12px" onclick="navigator.clipboard.writeText('https://offer.tm/r/a${i+1}7f')">Копировать</button></td></tr>`).join('');
+
+document.getElementById('srcTable').innerHTML = sources.map(s=>{
+ const c = s.ld ? Math.round(s.cf/s.ld*100) : 0;
+ return `<tr><td><strong>${s.n}</strong></td><td>${s.posts}</td><td>${s.cl}</td><td>${s.ld}</td><td>${s.cf}</td><td>${c}%</td></tr>`;
+}).join('');
+
+document.getElementById('leadsTable').innerHTML = leads.map(l=>
+ `<tr><td>${l.dt}</td><td>${l.of}</td><td>${l.src}</td><td>${stTag(l.st)}</td><td>${l.sum?rub(l.sum):'—'}</td></tr>`).join('');
+
+document.getElementById('payoutTable').innerHTML = payouts.map(p=>
+ `<tr><td>${p.p}</td><td>${p.n}</td><td>${rub(p.s)}</td><td>${payTag(p.st)}</td></tr>`).join('');
+
+function copyLink(){navigator.clipboard.writeText(document.getElementById('mainLink').value);alert('Ссылка скопирована');}
+
+document.getElementById('menu').onclick = e => {
+ const a = e.target.closest('[data-panel]'); if(!a) return; e.preventDefault();
+ document.querySelectorAll('.cabinet-menu a').forEach(x=>x.classList.remove('active'));
+ document.querySelectorAll('.cabinet-panel').forEach(x=>x.classList.remove('active'));
+ a.classList.add('active');
+ document.getElementById(a.dataset.panel).classList.add('active');
+};
+
+const chartOpt = {
+ responsive:true,
+ plugins:{legend:{labels:{color:'#64748b',font:{size:12}}}},
+ scales:{x:{ticks:{color:'#94a3b8'},grid:{color:'#f1f5f9'}},y:{ticks:{color:'#94a3b8'},grid:{color:'#f1f5f9'}}}
+};
+new Chart(chartMain,{type:'line',data:{
+ labels:daily.map(d=>d.d),
+ datasets:[
+  {label:'Переходы',data:daily.map(d=>d.cl),borderColor:'#2563eb',backgroundColor:'rgba(37,99,235,.1)',fill:true,tension:.3},
+  {label:'Заявки',data:daily.map(d=>d.ld),borderColor:'#0d9488',backgroundColor:'rgba(13,148,136,.1)',fill:true,tension:.3}
+ ]},options:chartOpt});
+new Chart(chartSrc,{type:'doughnut',data:{
+ labels:sources.map(s=>s.n),
+ datasets:[{data:sources.map(s=>s.ld),backgroundColor:['#2563eb','#0d9488','#7c3aed','#f59e0b','#94a3b8']}]
+},options:{plugins:{legend:{position:'bottom',labels:{color:'#64748b'}}}}});
+new Chart(chartSrcBar,{type:'bar',data:{
+ labels:sources.map(s=>s.n),
+ datasets:[{label:'Переходы',data:sources.map(s=>s.cl),backgroundColor:'#2563eb'},{label:'Заявки',data:sources.map(s=>s.ld),backgroundColor:'#0d9488'}]
+},options:chartOpt});
+new Chart(chartConv,{type:'bar',data:{
+ labels:sources.map(s=>s.n),
+ datasets:[{label:'Подтверждено',data:sources.map(s=>s.cf),backgroundColor:'#059669'}]
+},options:{...chartOpt,indexAxis:'y'}});
+new Chart(chartWeek,{type:'line',data:{
+ labels:daily.map(d=>d.d),
+ datasets:[
+  {label:'Переходы',data:daily.map(d=>d.cl),borderColor:'#2563eb',tension:.3},
+  {label:'Подтверждено',data:daily.map(d=>d.cf),borderColor:'#059669',tension:.3}
+ ]},options:chartOpt});
+new Chart(chartConfirmed,{type:'bar',data:{
+ labels:daily.map(d=>d.d),
+ datasets:[{label:'Подтверждённые',data:daily.map(d=>d.cf),backgroundColor:'#059669'}]
+},options:chartOpt});
+</script>
+</body></html>
