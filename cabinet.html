@@ -4,7 +4,7 @@
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width,initial-scale=1"/>
 <title>Личный кабинет — Трафик-менеджер</title>
-<link rel="stylesheet" href="styles.css"/>
+<link rel="stylesheet" href="styles.css"?v=3"/>
 <link rel="stylesheet" href="cabinet.css"/>
 <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
 </head>
@@ -83,9 +83,9 @@
    <div class="split" style="display:grid;grid-template-columns:1fr 1fr;gap:32px;align-items:center;margin-bottom:32px">
     <div>
      <p style="color:var(--muted);margin-bottom:16px">Разместите ссылку в разрешённом источнике. Переход фиксируется в системе и отображается в статистике.</p>
-     <img src="assets/slide-personal-link.png" alt="" style="border-radius:12px;box-shadow:var(--shadow)"/>
+     <img loading="lazy" decoding="async" src="assets/slide-personal-link.jpg" alt="" style="border-radius:12px;box-shadow:var(--shadow)"/>
     </div>
-    <img src="assets/slide-traffic-flow.png" alt="" style="border-radius:12px;box-shadow:var(--shadow)"/>
+    <img loading="lazy" decoding="async" src="assets/slide-traffic-flow.jpg" alt="" style="border-radius:12px;box-shadow:var(--shadow)"/>
    </div>
    <div class="table-wrap"><table class="data"><thead><tr><th>Предложение</th><th>Ссылка</th><th>Переходы</th><th>Заявки</th><th></th></tr></thead><tbody id="linksTable"></tbody></table></div>
   </section>
@@ -122,7 +122,7 @@
     <div class="chart-box"><h3>Динамика за неделю</h3><canvas id="chartWeek"></canvas></div>
     <div class="chart-box"><h3>Подтверждённые заявки</h3><canvas id="chartConfirmed"></canvas></div>
    </div>
-   <img src="assets/slide-dashboard.png" alt="" style="width:100%;max-height:280px;object-fit:cover;border-radius:16px;margin-top:8px;box-shadow:var(--shadow)"/>
+   <img loading="lazy" decoding="async" src="assets/slide-dashboard.jpg" alt="" style="width:100%;max-height:280px;object-fit:cover;border-radius:16px;margin-top:8px;box-shadow:var(--shadow)"/>
   </section>
 
   <!-- ВЫПЛАТЫ -->
@@ -136,7 +136,7 @@
     <div class="kpi"><div class="t">Выплачено за месяц</div><div class="v">18 200 ₽</div><div class="d">На расчётный счёт</div></div>
    </div>
    <div class="split" style="display:grid;grid-template-columns:1fr 1fr;gap:32px;align-items:center;margin-bottom:24px">
-    <img src="assets/p2-bank.png" alt="" style="border-radius:12px"/>
+    <img loading="lazy" decoding="async" src="assets/p2-bank.jpg" alt="" style="border-radius:12px"/>
     <div class="card"><h3>Реквизиты</h3><p style="color:var(--muted);font-size:14px;margin-top:8px">Расчётный счёт подключён · статус: активен<br/>Формат: самозанятый (уточнено с куратором)</p></div>
    </div>
    <div class="table-wrap"><table class="data"><thead><tr><th>Период</th><th>Подтверждено</th><th>Сумма</th><th>Статус выплаты</th></tr></thead><tbody id="payoutTable"></tbody></table></div>
@@ -172,12 +172,12 @@ const sources = [
  {n:'Другое',cl:32,ld:5,cf:3,posts:2}
 ];
 const offers = [
- {t:'Подработка курьером',d:'Вакансии · Москва и МО',rate:'350 ₽ / заявка',img:'p1-manager.png',cl:89,ld:14,on:true},
- {t:'Удалённая работа оператором',d:'Онлайн-сервисы',rate:'280 ₽ / заявка',img:'p1-schedule.png',cl:67,ld:9,on:true},
- {t:'Курсы по фрилансу',d:'Образование',rate:'420 ₽ / заявка',img:'p1-training.png',cl:54,ld:7,on:true},
- {t:'Вакансии склада',d:'Соискатели',rate:'310 ₽ / заявка',img:'p1-sources.png',cl:41,ld:5,on:false},
- {t:'Партнёрская программа',d:'Партнёрки',rate:'по условиям',img:'p1-growth.png',cl:28,ld:3,on:false},
- {t:'Подработка в выходные',d:'Вакансии',rate:'290 ₽ / заявка',img:'p1-flow.png',cl:36,ld:4,on:true}
+ {t:'Подработка курьером',d:'Вакансии · Москва и МО',rate:'350 ₽ / заявка',img:'p1-manager.jpg',cl:89,ld:14,on:true},
+ {t:'Удалённая работа оператором',d:'Онлайн-сервисы',rate:'280 ₽ / заявка',img:'p1-schedule.jpg',cl:67,ld:9,on:true},
+ {t:'Курсы по фрилансу',d:'Образование',rate:'420 ₽ / заявка',img:'p1-training.jpg',cl:54,ld:7,on:true},
+ {t:'Вакансии склада',d:'Соискатели',rate:'310 ₽ / заявка',img:'p1-sources.jpg',cl:41,ld:5,on:false},
+ {t:'Партнёрская программа',d:'Партнёрки',rate:'по условиям',img:'p1-growth.jpg',cl:28,ld:3,on:false},
+ {t:'Подработка в выходные',d:'Вакансии',rate:'290 ₽ / заявка',img:'p1-flow.jpg',cl:36,ld:4,on:true}
 ];
 const leads = [
  {dt:'08.06 14:22',of:'Курьер',src:'Telegram',st:'confirmed',sum:350},
@@ -212,7 +212,7 @@ document.getElementById('dashLeads').innerHTML = leads.slice(0,5).map(l=>
 
 document.getElementById('offerGrid').innerHTML = offers.map(o=>`
  <div class="offer-card">
-  <img src="assets/${o.img}" alt=""/>
+  <img loading="lazy" decoding="async" src="assets/${o.img}" alt=""/>
   <div class="body">
    <h4>${o.t}</h4><p>${o.d}</p>
    <div class="meta"><span>${o.rate}</span><span class="tag ${o.on?'blue':'yellow'}">${o.on?'Доступно':'Пауза'}</span></div>
