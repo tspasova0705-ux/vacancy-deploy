@@ -4,7 +4,7 @@
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width,initial-scale=1"/>
 <title>Личный кабинет — Трафик-менеджер</title>
-<link rel="stylesheet" href="styles.css?v=4"/>
+<link rel="stylesheet" href="styles.css?v=5"/>
 <link rel="stylesheet" href="cabinet.css"/>
 <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
 </head>
@@ -88,9 +88,9 @@
    <div class="split" style="display:grid;grid-template-columns:1fr 1fr;gap:32px;align-items:center;margin-bottom:32px">
     <div>
      <p style="color:var(--muted);margin-bottom:16px">Разместите ссылку в разрешённом источнике. Переход фиксируется в системе и отображается в статистике.</p>
-     <img loading="lazy" decoding="async" src="assets/slide-personal-link.jpg" alt="" style="border-radius:12px;box-shadow:var(--shadow)"/>
+     <img width="800" height="533" decoding="async" src="assets/slide-personal-link.jpg" alt="" style="border-radius:12px;box-shadow:var(--shadow)"/>
     </div>
-    <img loading="lazy" decoding="async" src="assets/slide-traffic-flow.jpg" alt="" style="border-radius:12px;box-shadow:var(--shadow)"/>
+    <img width="800" height="533" decoding="async" src="assets/slide-traffic-flow.jpg" alt="" style="border-radius:12px;box-shadow:var(--shadow)"/>
    </div>
    <div class="table-wrap"><table class="data"><thead><tr><th>Предложение</th><th>Ссылка</th><th>Переходы</th><th>Заявки</th><th></th></tr></thead><tbody id="linksTable"></tbody></table></div>
   </section>
@@ -127,7 +127,7 @@
     <div class="chart-box"><h3>Динамика за неделю</h3><canvas id="chartWeek"></canvas></div>
     <div class="chart-box"><h3>Подтверждённые заявки</h3><canvas id="chartConfirmed"></canvas></div>
    </div>
-   <img loading="lazy" decoding="async" src="assets/slide-dashboard.jpg" alt="" style="width:100%;max-height:280px;object-fit:cover;border-radius:16px;margin-top:8px;box-shadow:var(--shadow)"/>
+   <img width="800" height="533" decoding="async" src="assets/slide-dashboard.jpg" alt="" style="width:100%;max-height:280px;object-fit:cover;border-radius:16px;margin-top:8px;box-shadow:var(--shadow)"/>
   </section>
 
   <!-- ВЫПЛАТЫ -->
@@ -141,7 +141,7 @@
     <div class="kpi"><div class="t">Выплачено за месяц</div><div class="v">18 200 ₽</div><div class="d">На расчётный счёт</div></div>
    </div>
    <div class="split" style="display:grid;grid-template-columns:1fr 1fr;gap:32px;align-items:center;margin-bottom:24px">
-    <img loading="lazy" decoding="async" src="assets/p2-bank.jpg" alt="" style="border-radius:12px"/>
+    <img width="800" height="533" loading="lazy" decoding="async" src="assets/p2-bank.jpg" alt="" style="border-radius:12px"/>
     <div class="card"><h3>ООО «Фаст Таск»</h3><p style="color:var(--muted);font-size:14px;margin-top:8px">Работа по договору оказания услуг<br/>Расчётный счёт подключён · статус: активен<br/>Формат: самозанятый (уточнено с куратором)</p></div>
    </div>
    <div class="table-wrap"><table class="data"><thead><tr><th>Период</th><th>Подтверждено</th><th>Сумма</th><th>Статус выплаты</th></tr></thead><tbody id="payoutTable"></tbody></table></div>
@@ -239,7 +239,7 @@ document.getElementById('dashLeads').innerHTML = leads.slice(0,5).map(l=>
 
 document.getElementById('offerGrid').innerHTML = offers.map(o=>`
  <div class="offer-card">
-  <img loading="lazy" decoding="async" src="assets/${o.img}" alt=""/>
+  <img loading="lazy" decoding="async" src="assets/thumbs/${o.img}" alt=""/>
   <div class="body">
    <h4>${o.t}</h4><p>${o.d}</p>
    <div class="meta"><span>${o.rate}</span><span class="tag ${o.on?'blue':'yellow'}">${o.on?'Доступно':'Пауза'}</span></div>

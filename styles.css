@@ -94,7 +94,6 @@ img{max-width:100%;display:block}
 @media(max-width:900px){.footer-grid{grid-template-columns:1fr 1fr}}
 @media(max-width:600px){.footer-grid{grid-template-columns:1fr}}
 
-img{max-width:100%;height:auto}
-.card-img img,.hero-visual,.split img{object-fit:cover;background:#e2e8f0}
-.hero-visual{min-height:240px}
-.card-img{min-height:140px;background:#e2e8f0}
+.card-img img,.hero-visual,.split img{object-fit:cover}
+.hero-visual{background:#e2e8f0}
+.card-img{background:#e2e8f0}
