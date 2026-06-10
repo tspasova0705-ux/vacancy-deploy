@@ -4,7 +4,7 @@
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width,initial-scale=1"/>
 <title>Личный кабинет — Трафик-менеджер</title>
-<link rel="stylesheet" href="styles.css"?v=3"/>
+<link rel="stylesheet" href="styles.css?v=4"/>
 <link rel="stylesheet" href="cabinet.css"/>
 <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
 </head>
@@ -33,6 +33,7 @@
    <a href="#" data-panel="leads"><span class="ico">📝</span> Заявки</a>
    <a href="#" data-panel="stats"><span class="ico">📈</span> Статистика</a>
    <a href="#" data-panel="payouts"><span class="ico">💳</span> Выплаты</a>
+   <a href="#" data-panel="contract"><span class="ico">📄</span> Договор</a>
   </nav>
   <div style="padding:14px;margin-top:24px;background:var(--blue-soft);border-radius:12px;font-size:13px;color:var(--blue)">
    <strong>Куратор:</strong> Елена К.<br/>Вопросы по счёту и выплатам
@@ -47,6 +48,10 @@
     <h1>Дашборд</h1>
     <p>Обзор переходов, заявок и начислений за последние 7 дней</p>
    </div>
+   <div class="card" style="margin-bottom:24px;border-color:#2563eb">
+      <h3 style="margin-bottom:8px">ООО «Фаст Таск» · договор оказания услуг</h3>
+      <p style="color:var(--muted);font-size:15px">Работа оформляется по договору оказания услуг. Ваш договор будет доступен в личном кабинете после регистрации. <a href="#" onclick="document.querySelector('[data-panel=contract]').click();return false" style="color:var(--blue)">Подробнее →</a></p>
+    </div>
    <div class="kpi-row" id="kpi"></div>
    <div class="link-card">
     <p><strong>Персональная ссылка</strong> — система фиксирует, от кого пришёл переход</p>
@@ -137,7 +142,7 @@
    </div>
    <div class="split" style="display:grid;grid-template-columns:1fr 1fr;gap:32px;align-items:center;margin-bottom:24px">
     <img loading="lazy" decoding="async" src="assets/p2-bank.jpg" alt="" style="border-radius:12px"/>
-    <div class="card"><h3>Реквизиты</h3><p style="color:var(--muted);font-size:14px;margin-top:8px">Расчётный счёт подключён · статус: активен<br/>Формат: самозанятый (уточнено с куратором)</p></div>
+    <div class="card"><h3>Компания</h3><p style="color:var(--muted);font-size:14px;margin-top:8px">Расчётный счёт подключён · статус: активен<br/>Формат: самозанятый (уточнено с куратором)</p></div>
    </div>
    <div class="table-wrap"><table class="data"><thead><tr><th>Период</th><th>Подтверждено</th><th>Сумма</th><th>Статус выплаты</th></tr></thead><tbody id="payoutTable"></tbody></table></div>
   </section>
@@ -148,13 +153,13 @@
 
 <footer class="site-footer"><div class="container footer-grid">
 <div><div class="footer-logo">Трафик<span>Менеджер</span></div>
-<p class="footer-about">Интернет-реклама и привлечение трафика для рекламодателей. Помогаем получать целевую аудиторию, переходы и заявки из интернета.</p>
-<p class="footer-about" style="margin-top:12px"><strong>ИП Спасова Людмила Альфридовна</strong><br/>г. Орёл</p></div>
+<p class="footer-about">Проект <strong>ООО «Фаст Таск»</strong> — интернет-реклама и привлечение трафика для рекламодателей.</p>
+<p class="footer-about" style="margin-top:12px">Сотрудничество оформляется по <strong>договору оказания услуг</strong>. Договор доступен в личном кабинете каждого специалиста.</p></div>
 <div><h4>Направление</h4><ul>
 <li><a href="chast-1.html">Условия работы</a></li><li><a href="chast-2.html">Выплаты и счёт</a></li><li><a href="cabinet.html">Личный кабинет</a></li></ul></div>
 <div><h4>Важно</h4><ul class="plain"><li>Обучение бесплатное</li><li>Доход зависит от результата</li><li>Официальное сотрудничество</li></ul></div>
 <div><h4>Контакты</h4><p class="footer-contact">Вопросы по вакансии — через бот после регистрации.<br/>Куратор помогает на организационном этапе.</p></div>
-</div><div class="container footer-bottom"><span>© 2026 · ИП Спасова Людмила Альфридовна, г. Орёл</span><span>Доход зависит от активности и качества трафика</span></div></footer>
+</div><div class="container footer-bottom"><span>© 2026 · ООО «Фаст Таск»</span><span>Доход зависит от активности и качества трафика</span></div></footer>
 
 <script>
 const fmt = n => new Intl.NumberFormat('ru-RU').format(n);
